@@ -1,10 +1,10 @@
 ### `PR`
 
-[PR](https://facebook.github.io/create-react-app/docs/deployment)
+[PR](https://github.com/mohammed-khamees/storefront/pull/1)
 
 ### Deployment
 
-[https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+[storefront](https://storefront-khamees.netlify.app/)
 
 ## UML
 
