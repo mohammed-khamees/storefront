@@ -1,11 +1,11 @@
-import { makeStyles } from '@material-ui/core/styles';
-import { AppBar, Toolbar, Typography } from '@material-ui/core';
-const useStyles = makeStyles((theme) => ({
+import { AppBar, Toolbar, Typography, makeStyles } from '@material-ui/core';
+
+const useStyles = makeStyles(() => ({
 	appBar: {
 		top: 'auto',
 		bottom: 0,
-		height: '40px',
-		background: '#eeeeee',
+		height: '60px',
+		background: '#aaa',
 	},
 	title: {
 		color: 'black',
@@ -17,7 +17,7 @@ const Footer = () => {
 	const { appBar, title } = useStyles();
 
 	return (
-		<AppBar position="fixed" color="primary" className={appBar}>
+		<AppBar color="primary" className={appBar}>
 			<Toolbar>
 				<Typography variant="h6" className={title}>
 					© Code Fellows 2021
