@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { If, Else, Then } from 'react-if';
-import { ListItem, List, Grid, makeStyles } from '@material-ui/core';
+import { Grid, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -30,7 +30,13 @@ const SimpleCart = () => {
 					<div></div>
 				</Then>
 				<Else>
-					<Grid container justify="space-evenly" xs={3} spacing={3} className={root}>
+					<Grid
+						container
+						justify="space-evenly"
+						xs={3}
+						spacing={3}
+						className={root}
+					>
 						{state.cartProducts.map((product, i) => {
 							return (
 								<Grid
