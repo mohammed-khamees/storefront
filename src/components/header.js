@@ -1,5 +1,15 @@
-import { connect } from 'react-redux';
-import { Toolbar, Typography, makeStyles, AppBar } from '@material-ui/core';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+	Toolbar,
+	Typography,
+	makeStyles,
+	AppBar,
+	Container,
+} from '@material-ui/core';
+import IconButton from '@material-ui/core/IconButton';
+import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
+
+import { handleShow } from './../reducers/products';
 
 const useStyles = makeStyles(() => ({
 	title: {
@@ -14,25 +24,44 @@ const useStyles = makeStyles(() => ({
 	},
 }));
 
-const Header = (props) => {
+const Header = () => {
 	const { title, navBar } = useStyles();
 
+	const state = useSelector((state) => {
+		return {
+			TotalInventoryCount: state.products.TotalInventoryCount,
+			show: state.products.show,
+		};
+	});
+
+	const dispatch = useDispatch();
+
 	return (
-		<AppBar className={navBar}>
-			<Toolbar>
-				<Typography variant="h6" className={title}>
-					OUR STORE
-				</Typography>
-				<Typography variant="h6" className={title}>
-					CART ({props.TotalInventoryCount})
-				</Typography>
-			</Toolbar>
-		</AppBar>
+		<Container>
+			<AppBar className={navBar}>
+				<Toolbar>
+					<Typography variant="h6" className={title}>
+						OUR STORE
+					</Typography>
+					<Typography
+						variant="h6"
+						className={title}
+						onClick={() => {
+							dispatch(handleShow(!state.show));
+						}}
+					>
+						<IconButton
+							color="primary"
+							aria-label="add to shopping cart"
+							style={{ float: 'right' }}
+						>
+							<AddShoppingCartIcon />({state.TotalInventoryCount})
+						</IconButton>
+					</Typography>
+				</Toolbar>
+			</AppBar>
+		</Container>
 	);
 };
 
-const mapStateToProps = (state) => {
-	return { TotalInventoryCount: state.products.TotalInventoryCount };
-};
-
-export default connect(mapStateToProps)(Header);
+export default Header;

@@ -1,6 +1,6 @@
 ### `PR`
 
-[PR](https://github.com/mohammed-khamees/storefront/pull/1)
+[PR](https://github.com/mohammed-khamees/storefront/pull/2)
 
 ### Deployment
 
