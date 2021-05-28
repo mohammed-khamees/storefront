@@ -32,19 +32,19 @@ const SimpleCart = () => {
 				<Else>
 					<Grid
 						container
-						justify="space-evenly"
 						xs={3}
+						justify="space-evenly"
 						spacing={3}
 						className={root}
 					>
-						{state.cartProducts.map((product, i) => {
+						{state.cartProducts.map((product) => {
 							return (
 								<Grid
 									item
-									key={i}
+									key={product._id}
 									style={{ marginBottom: '1rem', background: '#eaeaea' }}
 								>
-									{product.name} ({product.inventoryCount})
+									{product.name} ({product.price} $)
 								</Grid>
 							);
 						})}

@@ -21,9 +21,6 @@ const useStyles = makeStyles((theme) => ({
 		borderRadius: '0.5rem',
 		boxShadow: '2px 2px 19px -3px rgba(0,0,0,0.66)',
 	},
-	listSection: {
-		backgroundColor: 'inherit',
-	},
 	ul: {
 		backgroundColor: 'inherit',
 		padding: 0,
@@ -77,24 +74,22 @@ const Categories = () => {
 							color="primary"
 							style={{ width: '9rem' }}
 						>
-							{category.displayName}
+							{category.name}
 						</Button>
 					</li>
 				))}
 				<List className={classes.root} subheader={<li />}>
 					{state.cartProducts.map((product) => (
-						<li key={product.id} className={classes.listSection}>
-							<ListItem key={product.id}>
-								<ListItemText primary={product.name} />
-								<DeleteIcon
-									onClick={() => handleRemove(product.id)}
-									style={{
-										cursor: 'pointer',
-										color: 'red',
-									}}
-								/>
-							</ListItem>
-						</li>
+						<ListItem key={product._id}>
+							<ListItemText primary={product.name} />
+							<DeleteIcon
+								onClick={() => handleRemove(product._id)}
+								style={{
+									cursor: 'pointer',
+									color: 'red',
+								}}
+							/>
+						</ListItem>
 					))}
 				</List>
 			</ul>
