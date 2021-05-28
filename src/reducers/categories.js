@@ -1,17 +1,17 @@
 const intialState = {
 	categories: [
 		{
-			name: 'ELECTRONICS',
+			name: 'electronics',
 			displayName: 'ELECTRONICS',
 			description: 'ELECTRONICS description',
 		},
 		{
-			name: 'FOOD',
+			name: 'food',
 			displayName: 'FOOD',
 			description: 'FOOD description',
 		},
 	],
-	active: 'ELECTRONICS',
+	active: '',
 };
 
 const categories = (state = intialState, action) => {

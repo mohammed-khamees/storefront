@@ -1,7 +1,9 @@
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { increment, getCartProducts } from './../reducers/products';
 import { If, Else, Then } from 'react-if';
 import SimpleCart from './simpleCart';
+import { getRemoteData } from './../reducers/actions';
 
 import {
 	Typography,
@@ -45,12 +47,13 @@ const Products = () => {
 			cartProducts: state.products.cartProducts,
 			show: state.products.show,
 			active: state.categories.active,
+			categories: state.categories.categories,
 		};
 	});
 
-	let activeProducts = state.products.filter(
-		(product) => product.categoryAssociation === state.active,
-	);
+	let activeProducts = state.products.filter((product) => {
+		return product.category === state.active;
+	});
 
 	const dispatch = useDispatch(getCartProducts);
 
@@ -58,6 +61,10 @@ const Products = () => {
 		dispatch(increment(id));
 		dispatch(getCartProducts(id));
 	};
+
+	useEffect(() => {
+		dispatch(getRemoteData('https://api-js401.herokuapp.com/api/v1/products'));
+	}, [dispatch]);
 
 	return (
 		<>
@@ -76,8 +83,8 @@ const Products = () => {
 					>
 						<Grid container item wrap="wrap" xs={10} spacing={0}>
 							<Grid container justify="space-evenly" wrap="wrap" spacing={8}>
-								{activeProducts.map((product, i) => (
-									<Card key={i} className={classes.root}>
+								{activeProducts.map((product) => (
+									<Card key={product._id} className={classes.root}>
 										<CardActionArea>
 											<CardMedia
 												component="img"
@@ -95,14 +102,14 @@ const Products = () => {
 													color="textSecondary"
 													component="p"
 												>
-													{product.description}
+													price: {product.price} $
 												</Typography>
 												<Typography
 													variant="body2"
 													color="textSecondary"
 													component="p"
 												>
-													{product.price}
+													inStock: {product.inStock}
 												</Typography>
 											</CardContent>
 										</CardActionArea>
@@ -113,9 +120,9 @@ const Products = () => {
 											<Button
 												size="small"
 												color="primary"
-												onClick={() => handleClick(product.id)}
+												onClick={() => handleClick(product._id)}
 											>
-												Add to Cart ({product.inventoryCount})
+												Add to Cart
 											</Button>
 										</CardActions>
 									</Card>
